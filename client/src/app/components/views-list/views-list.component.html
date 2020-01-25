@@ -1,1 +1,39 @@
-<p>views-list works!</p>
+<div class="row">
+<div class="col-md-4" *ngFor="let i of views" style="margin-top: 8rem;">
+
+  <div class="card">
+
+    <img [src]="i.image" class="card-img-top" alt="...">
+    <hr/>
+
+    <div class="card-body">
+      <h5 class="card-title">{{ i.title }}</h5>
+      <p class="card-text"> {{ i.content }} </p>
+
+      <div class="row">
+
+        <div class="col-md-7">
+          <b> {{ i.created_at | date: 'dd-MM-yyyy' }} </b>
+        </div>
+
+        <div class="col-md-1" style="margin-right: 2.5rem">
+          <button type="button" class="btn btn-warning" [routerLink]="['/views/edit', i.id]">
+            <i class="far fa-edit fa-2x"></i>
+          </button>
+        </div>
+
+        <div class="col-md-1">
+          <button type="button" class="btn btn-danger" (click)="delete(i.id)">
+            <i class="far fa-trash-alt fa-2x"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+<br><br><br><br><br><br>
