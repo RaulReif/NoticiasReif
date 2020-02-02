@@ -1,0 +1,55 @@
+<div class="row">
+<div class="col-md-4" *ngFor="let i of views" style="margin-top: 8rem;">
+
+  <div class="card">
+
+    <img [src]="i.image" class="card-img-top" alt="...">
+    <br>
+
+    <div class="card-body">
+      <h5 class="card-title">{{ i.title }}</h5>
+
+      <br>
+      <div class="row">
+        <div class="col-md-7">
+          <h5 class="card-title">{{ i.subtitle }}</h5>
+        </div>
+        <div class="col-md-5">
+          <h5 class="card-title">{{ i.section }}</h5>
+        </div>
+      </div>
+
+
+      <p class="card-text"> {{ i.content }} </p>
+
+      <br>
+
+      <b class="card-text"> {{ i.author }} </b>
+
+      <div class="row">
+
+        <div class="col-md-7">
+          <b> {{ i.created_at | date: 'dd-MM-yyyy' }} </b>
+        </div>
+
+        <div class="col-md-1" style="margin-right: 2.5rem">
+          <button type="button" class="btn btn-warning" [routerLink]="['/news/edit/', i.id]">
+            <i class="far fa-edit fa-2x"></i>
+          </button>
+        </div>
+
+        <div class="col-md-1">
+          <button type="button" class="btn btn-danger" (click)="delete(i.id)">
+            <i class="far fa-trash-alt fa-2x"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+<br><br><br><br><br><br>

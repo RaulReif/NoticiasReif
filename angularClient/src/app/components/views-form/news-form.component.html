@@ -1,0 +1,87 @@
+<div class="row" style="margin: 4rem;">
+
+  <!-- Formulario -->
+  <div class="col-md-7 card p-4">
+    <form>
+      <h2 class="text-center">Add a new news</h2>
+      <br><br>
+
+      <div class="form-group">
+        <label for="title">Title:</label>
+        <input type="text" class="form-control" id="title" placeholder="Title" [(ngModel)]="news.title"
+               [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="form-group">
+        <label for="subtitle">Subtitle:</label>
+        <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" [(ngModel)]="news.subtitle"
+               [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Section:</label>
+        <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="news.section" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let i of section_options" [value]="i">{{ i }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea class="form-control" rows="12" placeholder="Content of the news" id="content"
+                  [(ngModel)]="news.content" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author:</label>
+        <input type="text" class="form-control" id="author" placeholder="Subtitle" [(ngModel)]="news.author"
+               [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="text" class="form-control" placeholder="The url of the image" id="image"
+               [(ngModel)]="news.image" [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <button class="btn btn-success btn-block" (click)="edit ? editNews() : saveNewNews()"> Save</button>
+
+    </form>
+  </div>
+
+  <div class="col-md-1"></div>
+
+  <!-- Card de muestra de ejemplo-->
+  <div class="col-md-1">
+    <div class="card">
+
+      <img [src]="news.image == '' ? '/assets/no-imagen.jpg' : news.image" class="card-img-top" alt="...">
+      <hr/>
+
+      <div class="card-body">
+        <h5 class="card-title">{{ news.title == '' ? 'Sample title' : news.title}}</h5>
+
+        <br>
+        <div class="row">
+          <div class="col-md-7">
+            <h5 class="card-title">{{ news.subtitle == '' ? 'Subtitle example' : news.subtitle}}</h5>
+          </div>
+          <div class="col-md-5">
+            <h5 class="card-title">{{ news.section == '' ? 'Section' : news.section}}</h5>
+          </div>
+        </div>
+
+        <p class="card-text"> {{ news.content == '' ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultrices tempus lorem, sit amet hendrerit enim venenatis a. Maecenas varius suscipit rutrum. Vestibulum et sapien vitae odio finibus hendrerit sed eu purus. Aliquam id libero molestie, feugiat diam vitae, tristique neque. Aliquam nibh metus, lacinia at consectetur et, maximus id ex. Donec luctus pretium pharetra. Fusce vulputate convallis ex. Donec ac ipsum et sapien cursus tincidunt. Suspendisse placerat turpis eget tortor tincidunt, vitae commodo velit tempor. Ut ligula purus, vehicula vitae massa et, sodales congue leo. Nulla faucibus posuere tortor et porta. Maecenas vitae metus mi. Curabitur dapibus augue diam, sed venenatis tellus rutrum non. Nulla facilisi.'
+            : news.content}} </p>
+        <br>
+        <b class="card-text"> {{ news.author == '' ? 'Author' : news.author}} </b>
+        <div class="row">
+
+          <div class="col-md-7">
+            <b> {{ date | date: 'dd-MM-yyyy' }} </b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

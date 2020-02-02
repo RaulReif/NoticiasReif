@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<ion-content color="primary">
+
+    <div style="padding: 1em; background-color: #4c8dff">
+        <h1 style="text-align: center"><b>{{ news.title }}</b></h1><br>
+        <img [src]="news.image" alt="...">
+
+        <h2>{{ news.subtitle }}</h2>
+        <h3>Section: {{ news.section }}</h3>
+
+        <p>
+            {{ news.content }}
+            <br><br>
+            <b>{{ news.author }}</b><br>
+            <b>{{news.created_at | date: 'dd/MM/yyyy'}}</b>
+        </p>
+    </div>
+    <!--
+        <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea></ion-textarea>
+        </ion-item> -->
+
+    <h3 style="text-align: center">Add your commentary</h3>
+
+    <div style="padding: 2em">
+
+        <label>Name:</label>
+        <ion-input placeholder="Your name" [(ngModel)]="commentary.name"></ion-input>
+        <br>
+
+        <label>Email:</label>
+        <ion-input placeholder="Your email" [(ngModel)]="commentary.email"></ion-input>
+        <br>
+
+        <label>Commentary:</label>
+        <ion-textarea placeholder="You can write your commentary here..."
+                      [(ngModel)]="commentary.commentary"></ion-textarea>
+
+        <ion-button expand="full" color="secondary" (click)="comment()">Comment</ion-button>
+    </div>
+
+    <div style="padding-right: 2em; padding-left: 2em" *ngIf="comments.length > 0">
+        <h2>Comments</h2>
+
+        <p *ngFor="let i of comments">
+            <ion-label>- {{ i.name }} ({{ i.email }}): {{ i.commentary }}</ion-label>
+        </p>
+    </div>
+    <div style="padding-right: 2em; padding-left: 2em" *ngIf="comments.length == 0">
+        <h2>Comments</h2>
+        <br>
+        <h3>No comments</h3>
+    </div>
+
+</ion-content>

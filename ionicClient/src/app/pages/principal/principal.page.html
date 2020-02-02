@@ -1,0 +1,26 @@
+<app-header titulo="Main"></app-header>
+<ion-content color="primary">
+
+    <ion-card *ngFor="let i of newsShowed" style="margin: 1.5em" color="light">
+        <img [src]="i.image" alt="...">
+
+        <ion-card-header>
+            <ion-card-title>{{ i.title }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            {{ i.content | slice:0:100}}...
+            <br>
+            <b>{{ i.author }} - {{i.created_at | date: 'dd/MM/yyyy'}}</b><br><br>
+            <ion-button expand="full" [routerLink]="['/show-news/', i.id]">Read More</ion-button>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll threshold="150x" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
