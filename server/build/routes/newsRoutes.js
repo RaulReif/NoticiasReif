@@ -13,6 +13,7 @@ class NewsRoutes {
     config() {
         this.router.get('/', NewsController_1.default.getAll);
         this.router.get('/:id', NewsController_1.default.getOne);
+        this.router.get('/section/:section', NewsController_1.default.getAllOfSection);
         this.router.post('/', NewsController_1.default.create);
         this.router.delete('/:id', NewsController_1.default.delete);
         this.router.put('/:id', NewsController_1.default.update);

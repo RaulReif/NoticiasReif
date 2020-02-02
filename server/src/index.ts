@@ -3,6 +3,7 @@ import morgan from 'morgan'; //Morgan mostrará información de las peticiones q
 import cors from 'cors';
 import indexRoutes from './routes/IndexRoutes';
 import newsRoutes from './routes/NewsRoutes';
+import commentsRoutes from './routes/CommentsRoutes';
 
 class Server{
 
@@ -25,6 +26,7 @@ class Server{
     routes(): void{
         this.app.use('/', indexRoutes);
         this.app.use('/api/news', newsRoutes);
+        this.app.use('/api/comments', commentsRoutes);
     }
 
     start(): void{

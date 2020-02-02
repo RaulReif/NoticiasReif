@@ -16,14 +16,21 @@ const database_1 = __importDefault(require("../database"));
 class NewsController {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const views = yield database_1.default.then((r) => r.query('SELECT * FROM views'));
+            const views = yield database_1.default.then((r) => r.query('SELECT * FROM news ORDER BY created_at DESC'));
+            res.json(views);
+        });
+    }
+    getAllOfSection(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { section } = req.params;
+            const views = yield database_1.default.then((r) => r.query('SELECT * FROM news WHERE section like ? ORDER BY created_at DESC', [section]));
             res.json(views);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const views = yield database_1.default.then((r) => r.query('SELECT * FROM views WHERE id = ?', [id]));
+            const views = yield database_1.default.then((r) => r.query('SELECT * FROM news WHERE id = ?', [id]));
             if (views.length > 0) {
                 return res.json(views[0]);
             }
@@ -34,21 +41,21 @@ class NewsController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const views = yield database_1.default.then((r) => r.query('INSERT INTO views set ?', [req.body]));
+            const views = yield database_1.default.then((r) => r.query('INSERT INTO news set ?', [req.body]));
             res.json({ text: 'Juego creado' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const views = yield database_1.default.then((r) => r.query('DELETE FROM views WHERE id = ?', [id]));
+            const views = yield database_1.default.then((r) => r.query('DELETE FROM news WHERE id = ?', [id]));
             res.json({ text: 'Juego eliminado' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const views = yield database_1.default.then((r) => r.query('UPDATE views set ? WHERE id = ?', [req.body, id]));
+            const views = yield database_1.default.then((r) => r.query('UPDATE news set ? WHERE id = ?', [req.body, id]));
             res.json({ text: 'Juego actualizado' });
         });
     }

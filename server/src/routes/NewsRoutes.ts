@@ -11,6 +11,7 @@ class NewsRoutes {
     config(): void{
         this.router.get('/', newsController.getAll);
         this.router.get('/:id', newsController.getOne);
+        this.router.get('/section/:section', newsController.getAllOfSection);
         this.router.post('/', newsController.create);
         this.router.delete('/:id', newsController.delete);
         this.router.put('/:id', newsController.update);
